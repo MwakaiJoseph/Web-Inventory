@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Request Form</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="css/requests.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3JJsexKgzIiBA7OPbfnUXdTh57ZeGNWZxfg&s" alt="NGCDF Logo" class="logo">
+                <h1>NATIONAL GOVERNMENT CONSTITUENCIES DEVELOPMENT FUND BOARD</h1>
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="requests.html">Make Request</a></li>
+                    <li><a href="notifications.html">Notifications</a></li>
+                    <li><a href="login.html" class="logout-button">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="main-content">
+                <h2>Request Form</h2>
+                <p>Please fill this form according to your needs</p>
+                <form id="requestForm">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestType">Request Type</label>
+                        <select id="requestType" name="requestType" required>
+                            <option value="">Select Request Type</option>
+                            <option value="issue">Issue</option>
+                            <option value="replacement">Replacement</option>
+                            <option value="return">Return</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="asset">Asset</option>
+                            <option value="consumables">Consumables</option>
+                        </select>
+                    </div>
+                    
+                    <div id="subcategoryContainer" style="margin-top: 20px;"></div> <!-- Dynamic subcategory boxes -->
+                    
+                    <!-- Display selected items -->
+                    <div id="selectedItemsContainer" style="margin-top: 20px;">
+                        <h3>Selected Items:</h3>
+                        <ul id="selectedItemsList"></ul>
+                    </div>  <br><br>                      
+                    
+                    <div class="form-group">
+                        <label for="dateRequested">Date Requested</label>
+                        <input type="date" id="dateRequested" name="dateRequested" required>
+                    </div>
+                    <div class="form-group">
+                        <h3>To Location</h3>
+                        
+                        <label for="building">Building</label>
+                        <select id="building" name="building" required>
+                            <option value="">Select Building</option>
+                            <option value="building1">Building 1</option>
+                            <option value="building2">Building 2</option>
+                        </select>
+                    
+                        <label for="floor">Floor</label>
+                        <select id="floor" name="floor" required>
+                            <option value="">Select Floor</option>
+                            <option value="floor1">Floor 1</option>
+                            <option value="floor2">Floor 2</option>
+                        </select>
+                    
+                        <label for="department">Department</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select Department</option>
+                            <option value="dept1">Department 1</option>
+                            <option value="dept2">Department 2</option>
+                            <option value="dept3">Department 3</option>
+                            <option value="dept4">Department 4</option>
+                            <option value="dept5">Department 5</option>
+                            <option value="dept6">Department 6</option>
+                            <option value="dept7">Department 7</option>
+                            <option value="dept8">Department 8</option>
+                            <option value="dept9">Department 9</option>
+                            <option value="dept10">Department 10</option>
+                        </select>
+                    
+                        <label for="designation">Designation</label>
+                        <select id="designation" name="designation" required>
+                            <option value="">Select Designation</option>
+                            <option value="desig1">Designation 1</option>
+                            <option value="desig2">Designation 2</option>
+                            <option value="desig3">Designation 3</option>
+                            <option value="desig4">Designation 4</option>
+                            <option value="desig5">Designation 5</option>
+                            <option value="desig6">Designation 6</option>
+                            <option value="desig7">Designation 7</option>
+                            <option value="desig8">Designation 8</option>
+                            <option value="desig9">Designation 9</option>
+                            <option value="desig10">Designation 10</option>
+                            <option value="desig11">Designation 11</option>
+                            <option value="desig12">Designation 12</option>
+                            <option value="desig13">Designation 13</option>
+                            <option value="desig14">Designation 14</option>
+                            <option value="desig15">Designation 15</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Additional message</label>
+                        <input type="text" id="purpose" name="purpose" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const subcategoryContainer = document.getElementById("subcategoryContainer");
+            const selectedItemsList = document.getElementById("selectedItemsList");
+            const categorySelect = document.getElementById("category");
+
+            categorySelect.addEventListener("change", function() {
+                const selectedCategory = this.value;
+                
+                // Create a new subcategory box for the selected category
+                if (selectedCategory) {
+                    const subcategoryBox = document.createElement("div");
+                    subcategoryBox.className = "subcategory-box"; // Add class for styling
+                    subcategoryBox.innerHTML = `<h4>${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Subcategories</h4>`;
+                    const subcategoryOptions = document.createElement("div");
+
+                    // Populate Subcategory based on selected Category
+                    const options = selectedCategory === "asset" 
+                        ? ["Desktop", "Monitor", "UPS", "Printer", "Laptop"]
+                        : ["Mouse", "Keyboard", "Toner", "Extension", "Ethernet Cable"];
+
+                    options.forEach(item => {
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.value = item;
+                        checkbox.id = item + selectedCategory; // Unique ID for each checkbox
+                        checkbox.addEventListener("change", updateSelectedItems); // Update selected items on change
+
+                        const label = document.createElement("label");
+                        label.htmlFor = checkbox.id;
+                        label.textContent = item;
+
+                        subcategoryOptions.appendChild(checkbox);
+                        subcategoryOptions.appendChild(label);
+                        subcategoryOptions.appendChild(document.createElement("br")); // Line break
+                    });
+
+                    subcategoryBox.appendChild(subcategoryOptions);
+                    subcategoryContainer.appendChild(subcategoryBox);
+                }
+            });
+
+            function updateSelectedItems() {
+                // Clear the current selected items list
+                selectedItemsList.innerHTML = ""; 
+
+                // Find all checkboxes
+                const checkboxes = document.querySelectorAll(".subcategory-box input[type='checkbox']");
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = checkbox.value;
+                        selectedItemsList.appendChild(listItem);
+                    }
+                });
+            }
+                
+                    document.getElementById("requestForm").addEventListener("submit", function(event) {
+                        event.preventDefault();
+                        alert("Form submitted successfully!");
+                    });
+        </script> 
+        <div class="footer">
+            <!-- About Us -->
+            <div>
+                <h4>About Us</h4>
+                <p>To provide leadership and policy direction for effective and efficient management of the Fund.</p>
+            </div>
+    
+            <!-- Address -->
+            <div>
+                <h4>Address</h4>
+                <p>Harambee Sacco Building, Haile Selassie Avenue</p>
+                <p>PO Box 46682-00100, Nairobi, Kenya</p>
+                <p>📞 +254 700 494 000</p>
+                <p>📧 <a href="mailto:info@ngcdf.go.ke">info@ngcdf.go.ke</a></p>
+            </div>
+    
+            <!-- Interactive Maps Location -->
+            <div class="map">
+                <h4>Maps Location</h4>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.9470120760234!2d36.81724427514339!3d-1.2863890359731405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10a45a98270f%3A0x8c8c6e2348bbbc0f!2sHarambee%20Sacco%20Building%2C%20Haile%20Selassie%20Ave%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1611059062015!5m2!1sen!2ske"
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="copyright">
+            &copy; Copyright 2024 NGCDF
+        </div>
+    </body>
+</html>

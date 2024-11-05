@@ -1,0 +1,138 @@
+body{
+    background-image: url("https://i.imghippo.com/files/2M9Aj1724160229.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;   
+    height: 100vh;
+}
+
+header {
+    background-color: #1CA94E;
+    color: white;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers both the logo and the text horizontally */
+}
+
+.header-content {
+    display: flex;
+    align-items: center; /* Aligns logo and text vertically */
+}
+
+.logo {
+    max-height: 60px; /* Adjust the height according to your needs */
+    margin-right: 85px; /* Space between the logo and the text */
+    border-radius: 7px; /* Adjust the value for more or less rounded corners */
+}
+
+header h1 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.wrapper{
+    width:350px;
+    margin:8% auto;
+    padding:10px;
+    border-radius: 20px;
+    background-color: rgba(0,0,0,0.23);
+	box-shadow: 0 0 20px #000000;
+}
+
+.heading {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.heading h2 {
+	color: #ee252e;
+	font-size: 30px;
+}
+
+form {
+	text-align: center;
+}
+
+form input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 30px;
+    border: none;
+    outline: none;
+    padding-left: 5px;
+    box-sizing: border-box;
+	font-size: 15px;
+	color: rgb(24, 23, 23);
+    border-radius: 10px;
+}
+
+form button{
+    width: 100px;
+    height: 30px;
+    margin-bottom: 30px;
+    border: none;
+    outline: none;
+    padding-left: 8px;
+    box-sizing: border-box;
+	font-size: 14px;
+	color: #ffffff;
+    border-radius: 8px;
+}
+.fa-envelope, .fa-lock {
+	position: absolute;
+	left: 15px;
+	color: #ee252e;
+	font-size: 17px;
+	top: 2px;
+}
+
+form span {
+	position: relative;
+}
+
+form ::placeholder {
+    color: #828386;
+    font-weight: normal;
+}
+
+form input{
+    padding-left: 40px;
+}
+
+form button {
+	padding-left: 2;
+	background-color: #ee252e;
+	letter-spacing: 1px;
+	font-weight: bold;
+    border-radius: 15px;
+}
+
+form button:hover {
+	box-shadow: 2px 2px 5px #555;
+	background-color: #1ca94e;
+    color:black;
+}
+
+.password-container {
+    width: 300px;
+    position: relative;
+}
+
+.fa-eye {
+    position: absolute;
+    top: 20%;
+    right: 4%;
+    cursor: pointer;
+    font-size: 14px;
+    color: #7a7b7d;
+}
+
+footer {
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
